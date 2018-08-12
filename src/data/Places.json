@@ -1,0 +1,142 @@
+[
+	{
+		"id": 0,
+		"name": "Politecnico di Bari",
+		"type": "Polytechnic University",
+		"pos": {
+			"lat": 41.1089011,
+			"lng": 16.87757780000004
+		},
+		"address": "Via Re David 200, Bari"
+	},
+	{
+		"id": 1,
+		"name": "Università degli Studi di Bari A. Moro",
+		"type": "Public University",
+		"pos": {
+			"lat": 41.1205546,
+			"lng": 16.868474500000048
+		},
+		"address": "Piazza Umberto I 1, Bari"
+	},
+	{
+		"id": 2,
+		"name": "Accademia di Belle Arti di Bari",
+		"type": "Arts Academy",
+		"pos": {
+			"lat": 41.1111455,
+			"lng": 16.87640160000001
+		},
+		"address": "Via Re Giuseppe David 189, Bari"
+	},
+	{
+		"id": 3,
+		"name": "Conservatorio N. Piccininni",
+		"type": "Conservatory",
+		"pos": {
+			"lat": 41.116239,
+			"lng": 16.857050999999956
+		},
+		"address": "Via Michele Cifarelli 26, Bari"
+	},
+	{
+		"id": 4,
+		"name": "Università del Salento",
+		"type": "Public University",
+		"pos": {
+			"lat": 40.34956,
+			"lng": 18.167267100000004
+		},
+		"address": "Piazza Tancredi 7, Lecce"
+	},
+	{
+		"id": 5,
+		"name": "Accademia di Belle Arti di Lecce",
+		"type": "Arts Academy",
+		"pos": {
+			"lat": 40.3510047,
+			"lng": 18.164752200000066
+		},
+		"address": "Via Giuseppe Libertini 3, Lecce"
+	},
+	{
+		"id": 6,
+		"name": "Università di Foggia",
+		"type": "Public University",
+		"pos": {
+			"lat": 41.449855,
+			"lng": 15.56658630000004
+		},
+		"address": "Via Antonio Gramsci 85, Foggia"
+	},
+	{
+		"id": 7,
+		"name": "Accademia di Belle Arti di Foggia",
+		"type": "Arts Academy",
+		"pos": {
+			"lat": 41.4618252,
+			"lng": 15.543431999999939
+		},
+		"address": "Corso Giuseppe Garibaldi 35, Foggia"
+	},
+	{
+		"id": 8,
+		"name": "Conservatorio U. Giordano",
+		"type": "Conservatory",
+		"pos": {
+			"lat": 41.4651978,
+			"lng": 15.544918300000063
+		},
+		"address": "Piazza Vincenzo Nigri 5, Foggia"
+	},
+	{
+		"id": 9,
+		"name": "Libera Università Mediterranea",
+		"type": "Private University",
+		"pos": {
+			"lat": 40.9757915,
+			"lng": 16.91873080000005
+		},
+		"address": "Strada Statale 100 km 18, Casamassima"
+	},
+	{
+		"id": 10,
+		"name": "Università LUMSA",
+		"type": "Private Catholic University",
+		"pos": {
+			"lat": 40.4589474,
+			"lng": 17.27103850000003
+		},
+		"address": "Via Fratelli Rosselli, Taranto"
+	},
+	{
+		"id": 11,
+		"name": "Conservatorio U. Giordano (Rodi G.)",
+		"type": "Conservatory",
+		"pos": {
+			"lat": 41.9265268,
+			"lng": 15.882794200000035
+		},
+		"address": "Strada Comunale Croce, Rodi Garganico"
+	},
+	{
+		"id": 12,
+		"name": "Conservatorio N. Rota",
+		"type": "Conservatory",
+		"pos": {
+			"lat": 40.9529086,
+			"lng": 17.294956800000023
+		},
+		"address": "Piazza S. Antonio 27, Monopoli"
+	},
+	{
+		"id": 13,
+		"name": "Università degli Studi N. Cusano",
+		"type": "Telematic University",
+		"pos": {
+			"lat": 41.2756323,
+			"lng": 16.418723
+		},
+		"address": "Corso Vittorio Emanuele, Trani"
+	}
+]
