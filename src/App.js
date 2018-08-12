@@ -125,7 +125,7 @@ class App extends Component {
 		if (this.state.showingInfoWindow) {
 			this.setState({activeMarker: null, selectedPlace: {}, showingInfoWindow: false});
 		}
-		this.setState({zoom: 8, center: { lat: 41.1171432, lng: 16.871871499999997 }});
+		this.setState({zoom: 8, center: { lat: 41.1171432, lng: 16.871871499999997 }, open: false});
 	};
 
 	// Handling infowindow's closing

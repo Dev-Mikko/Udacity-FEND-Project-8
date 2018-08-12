@@ -56,10 +56,10 @@ npm start
 
 Rember to insert your personal API key to enjoy the full potential of this web app.
 All the datas are stored inside the Places.json file (.src/data/Places.json).
-You can use this app offline thanks to service worker (./src/registerserviceworker.js) but only after you use the following command inside your terminal:
+You can use this app offline thanks to service worker (./src/registerServiceWorker.js) but only after you use the following command inside your terminal:
 
 ```
-npm build
+npm run build
 ```
 
 **Credits**:
