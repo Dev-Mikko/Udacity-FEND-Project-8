@@ -63,7 +63,6 @@ class App extends Component {
 		fetch(`${api}/venues/search?ll=${places.pos.lat},${places.pos.lng}&name={places.name}&categoryId=4d4b7105d754a06372d81259,4bf58dd8d48988d198941735,4bf58dd8d48988d197941735&limit=5&radius=1500&client_id=${client.id}&client_secret=${client.secret}&v=${client.v}`, {
 			method: 'GET',
 		}).then(res => {
-			console.log('res', res);
 			if(res.ok) {
 				return res.json();
 			} else {
@@ -93,12 +92,6 @@ class App extends Component {
 	};
 
 	componentDidMount() {
-		// Handling failed map loading
-		window.gm_authFailure = () => {
-			const map = document.getElementsByClassName("app-container");
-			map.innerHTML = '';
-			map.innerHTML = '<p styles="text-align: center">Error: Google Maps failed to load. Please, try again later or reload the page</p>';
-		}
 		this.loadPlaces();
 	};
 
@@ -175,6 +168,10 @@ class App extends Component {
 	// Handling click on markers
 	clickOnMarker = (center, marker, place) => {
 		this.getFoursquareData(marker, place);
+		marker.id === place.id && marker.setAnimation(window.google.maps.Animation.BOUNCE);
+		window.setTimeout(() => {
+				marker.setAnimation(null);
+		}, 2000);
 		this.setState({zoom: 17, center, activeMarker: marker, selectedPlace: place, showingInfoWindow: true});
 	};
 

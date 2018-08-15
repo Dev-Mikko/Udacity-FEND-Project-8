@@ -41,6 +41,12 @@ class MapContainer extends Component {
 			}
 		}
 
+		window.gm_authFailure = () => {
+			const mapContainer = document.querySelector('.app-container');
+			mapContainer.innerHTML = '';
+			alert('Google Maps failed to load properly. Check your browser console for more info.');
+		}
+
 		return (
 			<Map google={this.props.google} onClick={this.props.onClickMap} initialCenter={center} center={center} zoom={zoom} style={styles.map}>
 				{
@@ -66,7 +72,7 @@ class MapContainer extends Component {
 								<ol style={styles.list}>
 									{
 										this.props.nearPlaces.map((place) => (
-											<li>{place}</li>
+											<li key={place}>{place}</li>
 										))
 									}
 								</ol>
