@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Component } from 'react'
 import {Map, Marker, InfoWindow, GoogleApiWrapper} from 'google-maps-react';
 
 // Material design components
@@ -19,7 +19,7 @@ class MapContainer extends Component {
 			},
 			card: {
 				textAlign: 'center',
-				maxWidth: '200px',
+				maxWidth: '250px',
 			},
 			title: {
 				fontSize: '16px',
@@ -30,6 +30,14 @@ class MapContainer extends Component {
 			type: {
 				fontWeight: 'bold',
 				marginBottom: '10px',
+			},
+			nearPlaceContainer: {
+				margin: '10px 0',
+			},
+			list: {
+				height: '100px',
+				overflowY: 'auto',
+				padding: '0'
 			}
 		}
 
@@ -37,7 +45,7 @@ class MapContainer extends Component {
 			<Map google={this.props.google} onClick={this.props.onClickMap} initialCenter={center} center={center} zoom={zoom} style={styles.map}>
 				{
 					data.map((uni) => (
-						<Marker key={uni.id} id={uni.id} tabIndex='0' 
+						<Marker key={uni.id} id={uni.id} tabIndex='0' ref={this.props.onMarkerCreated}
 						aria-label={`Marker for ${uni.name}`} onClick={(event, marker) => this.props.onClickMarker(uni.pos, marker, uni)}
 						name={uni.name} position={uni.pos} animation={this.props.google.maps.Animation.DROP} />))
 				}
@@ -50,6 +58,19 @@ class MapContainer extends Component {
 							<Typography>
 								{selectedPlace.address}
 							</Typography>
+							<Typography>
+								{selectedPlace.city}
+							</Typography>
+							<div style={styles.nearPlaceContainer}>
+								<Typography>Near Places by Foursquare:</Typography>
+								<ol style={styles.list}>
+									{
+										this.props.nearPlaces.map((place) => (
+											<li>{place}</li>
+										))
+									}
+								</ol>
+							</div>
 						</CardContent>
 					</Card>
 				</InfoWindow>

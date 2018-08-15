@@ -29,6 +29,8 @@ class App extends Component {
 	state = {
 		// Map data & setting
 		places: [],
+		markers: [],
+		nearPlaces: [],
 		center: {
 			lat: 41.1171432,
 			lng: 16.871871499999997
@@ -48,14 +50,55 @@ class App extends Component {
 		showingInfoWindow: false,
 	};
 
+	// Foursquare API
+	getFoursquareData = (markers, places) => {
+		const api = 'https://api.foursquare.com/v2';
+		
+		const client = {
+			id: 'XQOR1EMOAZE3AEJX4NYPAMC0WH22SOHTREX0HUSILQHKPKN1',
+			secret: '2VPJRQ3BR3QZR0PHMUMP321O5CB0ZG3YDXYRVQDB3EHJTFNI',
+			v: '20180323'
+		};
+
+		fetch(`${api}/venues/search?ll=${places.pos.lat},${places.pos.lng}&name={places.name}&categoryId=4d4b7105d754a06372d81259,4bf58dd8d48988d198941735,4bf58dd8d48988d197941735&limit=5&radius=1500&client_id=${client.id}&client_secret=${client.secret}&v=${client.v}`, {
+			method: 'GET',
+		}).then(res => {
+			console.log('res', res);
+			if(res.ok) {
+				return res.json();
+			} else {
+				throw new Error("Sorry, can't get information from Foursquare...");			
+			}
+		}).then(data => {
+			const p = data.response.venues;
+			const nearPlaces = [];
+
+			p.forEach((place) => {
+				if(!place.name.includes(markers.name)) {
+					nearPlaces.push(place.name);
+				}
+			});
+
+			this.setState({nearPlaces});
+		}).catch((error) => {
+			alert(error);
+		});	
+	};
+
 	// Load and order the places
 	loadPlaces = () => {
 		let places = Places.sort(sortBy('name'));
 		let results = places;
 		this.setState({places, results});
-	}
+	};
 
 	componentDidMount() {
+		// Handling failed map loading
+		window.gm_authFailure = () => {
+			const map = document.getElementsByClassName("app-container");
+			map.innerHTML = '';
+			map.innerHTML = '<p styles="text-align: center">Error: Google Maps failed to load. Please, try again later or reload the page</p>';
+		}
 		this.loadPlaces();
 	};
 
@@ -67,6 +110,15 @@ class App extends Component {
 			this.setState({open: false});
 		}
 	};
+
+	// Store all marker inside an array
+	onMarkerCreated = (marker) => {
+		let { markers } = this.state;
+
+		if (marker !== null) {
+			markers.push(marker);
+		}
+	}
 
 	// When results are filtered, zoom and center on them
 	zoomAndCenter = () => {
@@ -111,12 +163,18 @@ class App extends Component {
 	};
 
 	// Handling click on searchbar's results
-	clickOnResult = (center) => {
+	clickOnResult = (center, marker, place) => {
+		for (const createdMarker of this.state.markers) {
+			if (createdMarker.props.id === place.id) {
+				new createdMarker.props.google.maps.event.trigger(createdMarker.marker, 'click');
+			}
+		}
 		this.setState({zoom: 17, center, open: false});
 	};
 
 	// Handling click on markers
 	clickOnMarker = (center, marker, place) => {
+		this.getFoursquareData(marker, place);
 		this.setState({zoom: 17, center, activeMarker: marker, selectedPlace: place, showingInfoWindow: true});
 	};
 
@@ -183,8 +241,9 @@ class App extends Component {
 					<Slide direction="right" in={open} mountOnEnter unmountOnExit>
 						<Search data={results} search={this.searchPlaces} query={query} click={this.clickOnResult} />
 					</Slide>
-					<Map data={results} zoom={this.state.zoom} center={this.state.center} onDezoom={this.getFar} onClickMarker={this.clickOnMarker} onClickMap={this.clickOnMap} 
-					onVisible={this.state.showingInfoWindow} marker={this.state.activeMarker} selectedPlace={this.state.selectedPlace} onClose={this.closeInfoWindow} />
+					<Map data={results} zoom={this.state.zoom} center={this.state.center} onDezoom={this.getFar} onClickMarker={this.clickOnMarker} 
+					onClickMap={this.clickOnMap} onVisible={this.state.showingInfoWindow} marker={this.state.activeMarker} nearPlaces={this.state.nearPlaces}
+					selectedPlace={this.state.selectedPlace} onClose={this.closeInfoWindow} onMarkerCreated={this.onMarkerCreated} />
 				</main>
 				{ /* end main app */ }
 

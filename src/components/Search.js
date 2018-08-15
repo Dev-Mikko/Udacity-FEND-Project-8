@@ -10,7 +10,7 @@ import SearchIcon from '@material-ui/icons/Search';
 
 class Search extends Component {
 	render() {
-		const { query } = this.props;
+		const { query, data } = this.props;
 
 		const styles = {
 			container: {
@@ -29,9 +29,9 @@ class Search extends Component {
 				</Grid>
 				<Grid container style={styles.container} alignItems="flex-end">
 				{
-					this.props.data.map(locations => (
+					data.map(locations => (
 						<Grid item key={locations.id} style={{margin: '10px auto'}}>
-							<Chip label={locations.name} onClick={(event) => this.props.click(locations.pos)} />
+							<Chip label={locations.name} onClick={(event, marker) => this.props.click(locations.pos, marker, locations)} />
 						</Grid>
 					))
 				}

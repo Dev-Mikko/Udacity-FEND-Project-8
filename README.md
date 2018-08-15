@@ -67,5 +67,6 @@ npm run build
 - Michele "*Dev_Mikko*" De Palma
 - Udacity for the Nanodegree's lessons 
 - NodeJS
+- Google & Foursquare for the APIs
 - Facebook for ReactJS
 - All creators of implemented components (prop-types, sort-by, escape-string-regexp, Material-UI React, google-maps-react)
